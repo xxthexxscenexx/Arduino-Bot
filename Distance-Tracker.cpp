@@ -1,11 +1,4 @@
-/* ultrasonic range sensor
-
-   This sketch reads an ultrasonic rangefinder and returns the
-   distance to the closest object in range. To do this, it sends a pulse
-   to the sensor to initiate a reading, then listens for a pulse 
-   to return.  The length of the returning pulse is proportional to 
-   the distance of the object from the sensor.
-     
+/* ultrasonic range sensor HC-SR04 
    The circuit:
 	* +V connection of the distance sensor attached to +5V
 	* GND connection of the distance sensor attached to ground
@@ -13,9 +6,9 @@
         * ECHO connection of the distance sensor attached to digital pin 4
  */
 
-const int pingPin = 9; // output of the sensor 
-const int echoPin = 8; // input of the sensor 
-int timer = 100;           // The higher the number, the slower the timing.
+const int pingPin = 9;    // output of the sensor 
+const int echoPin = 8;    // input of the sensor 
+int timer = 100;          // The higher the number, the slower the timing.
 int ledPin1 = 2;
 int ledPin2 = 3;
 int ledPin3 = 4;
@@ -24,13 +17,14 @@ int ledPin5 = 6;
 int ledPin6 = 7;
 
 void setup() {
+  // LED's initialized as outputs 
   pinMode (ledPin1, OUTPUT);
   pinMode (ledPin2, OUTPUT);
   pinMode (ledPin3, OUTPUT);
   pinMode (ledPin4, OUTPUT);
   pinMode (ledPin5, OUTPUT);
   pinMode (ledPin6, OUTPUT);
-  Serial.begin(9600);
+  Serial.begin(9600); // Serial output
 }
 
 void loop()
@@ -125,18 +119,14 @@ void loop()
 
 long microsecondsToInches(long microseconds)
 {
-  // According to Parallax's datasheet for the sensor, there are
   // 73.746 microseconds per inch (i.e. sound travels at 1130 feet per
-  // second).  This gives the distance travelled by the ping, outbound
-  // and return, so we divide by 2 to get the distance of the obstacle.
-  // See: http://www.parallax.com/dl/docs/prod/acc/28015-PING-v1.3.pdf
+  // second). Divide by 2 to get the distance of the obstacle.
   return microseconds / 74 / 2;
 }
 
 long microsecondsToCentimeters(long microseconds)
 {
-  // The speed of sound is 340 m/s or 29 microseconds per centimeter.
-  // The ping travels out and back, so to find the distance of the
-  // object we take half of the distance travelled.
+  // The speed of sound is 340 m/s or 29 microseconds per centimeter. 
+  // Take half of the distance travelled.
   return microseconds / 29 / 2;
 }
