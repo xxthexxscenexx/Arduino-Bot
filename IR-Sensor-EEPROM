@@ -17,8 +17,8 @@
 #define btnMute    148          //Mute button
 #define btnLeft    147          //Left channel button
 #define btnRight   146          //Right channel button
-#define btnUp      144          //Volumn up button  
-#define btnDown    145          //Volumn down button
+#define btnUp      144          //Volume up button  
+#define btnDown    145          //Volume down button
 #define rate       4            
 #define start_bit  2000         //Start bit threshold (Microseconds)
 #define bin_1      1000         //Binary 1 threshold (Microseconds)
@@ -99,7 +99,7 @@ void loop()
      EEPROM.write(2, volume);
      break; 
      
-  //Down volumn button
+  //Down volume button
   case btnDown:
      if(channel == 0){
        channel = 1;
@@ -112,7 +112,7 @@ void loop()
      delay (500); //Debounce switch
      break;
   
-  //Up volumn button   
+  //Up volume button   
   case btnUp:
     if(channel == 0){
          channel = 1;
