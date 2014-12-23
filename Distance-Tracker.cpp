@@ -105,7 +105,7 @@ void loop()
     digitalWrite(ledPin1, LOW);
     digitalWrite(ledPin6, LOW);
     
-  } else if (inches > 60) {
+  } else if (inches > 50) {
     digitalWrite(ledPin6, HIGH);
     digitalWrite(ledPin2, LOW);
     digitalWrite(ledPin3, LOW);
